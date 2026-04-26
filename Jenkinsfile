@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/Rachana5856/cloud-devops-project.git'
+                git branch: 'main', url: 'https://github.com/Rachana5856/cloud-devops-project.git'
             }
         }
 
