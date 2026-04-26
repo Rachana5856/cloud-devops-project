@@ -15,15 +15,33 @@ pipeline {
             }
         }
 
-        stage('Terraform Version') {
+        stage('Terraform Init') {
             steps {
-                sh 'terraform version || echo Terraform not installed yet'
+                dir('dev') {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Validate') {
+            steps {
+                dir('dev') {
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir('dev') {
+                    sh 'terraform plan'
+                }
             }
         }
 
         stage('Success') {
             steps {
-                echo 'Cloud DevOps Pipeline Build Successful!'
+                echo 'Terraform Pipeline Successful!'
             }
         }
     }
